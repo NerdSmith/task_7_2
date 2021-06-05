@@ -110,15 +110,11 @@ public class FrameMain extends JFrame {
             int result = chooser.showOpenDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {
                 String name = chooser.getSelectedFile().getPath();
-                Scanner scanner;
                 try {
-                    scanner = new Scanner(new File(name));
-                } catch (FileNotFoundException fileNotFoundException) {
-                    return;
+                    inputTextArea.setText(new FileReader(name).readAll());
                 }
-                while (scanner.hasNext()) {
-                    inputTextArea.append(scanner.nextLine());
-                    inputTextArea.append(System.lineSeparator());
+                catch (FileNotFoundException err) {
+                    err.printStackTrace();
                 }
             }
         });

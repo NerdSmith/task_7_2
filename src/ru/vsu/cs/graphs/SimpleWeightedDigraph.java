@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class SimpleWeightedDigraph implements WeightedDigraph {
-    /**
-     * Да я вертел на сколько Simple...
-     */
     protected static class Edge implements WeightedEdgeTo {
         int destination;
         double weight;
