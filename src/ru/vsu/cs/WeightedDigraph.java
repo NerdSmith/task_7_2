@@ -1,5 +1,5 @@
 package ru.vsu.cs;
 
 
-public interface WeightedDigraph extends WeightedGraph {
+public interface WeightedDigraph extends WeightedGraph, Digraph {
 }

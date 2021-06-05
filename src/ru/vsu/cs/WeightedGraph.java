@@ -15,11 +15,6 @@ public interface WeightedGraph extends Graph {
         throw new UnsupportedOperationException("Use 'addEdge' with 'weight' param instead");
     }
 
-    @Override
-    default Iterable<Integer> adjacencies(int v) {
-        throw new UnsupportedOperationException("Use 'adjacenciesWithWeights' instead");
-    };
-
     Iterable<WeightedEdgeTo> adjacenciesWithWeights(int v);
 
     default Double getWeight(int v1, int v2) {

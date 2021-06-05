@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeightedDigraphAlgorithms {
-    public static ArrayList<Pair<Integer, List<Integer>>> getAllPathsWithLength(SimpleWeightedDigraph graph, int s, int d) {
+    public static ArrayList<Pair<Integer, List<Integer>>> getAllPathsWithLength(WeightedGraph graph, int s, int d) {
         ArrayList<Pair<Integer, List<Integer>>> pathsWithLength = new ArrayList<>();
         boolean[] isVisited = new boolean[graph.vertexCount()];
         ArrayList<Integer> pathList = new ArrayList<>();
@@ -16,7 +16,7 @@ public class WeightedDigraphAlgorithms {
         return pathsWithLength;
     }
 
-    private static void getAllPathsWithLengthUtil(SimpleWeightedDigraph graph,
+    private static void getAllPathsWithLengthUtil(WeightedGraph graph,
                                            Integer curr,
                                            Integer dest,
                                            boolean[] isVisited,

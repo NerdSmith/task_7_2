@@ -2,6 +2,7 @@ package ru.vsu.cs;
 
 import java.util.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class SimpleWeightedDigraph implements WeightedDigraph {
     /**
@@ -31,22 +32,26 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
     private int edges;
     private List<List<WeightedEdgeTo>> adjacencylist;
 
-    private static Iterable<WeightedEdgeTo> nullIterable = new Iterable<WeightedEdgeTo>() {
+    protected static class NullIterator<T> implements Iterable<T> {
         @Override
-        public Iterator<WeightedEdgeTo> iterator() {
-            return new Iterator<WeightedEdgeTo>() {
+        public Iterator<T> iterator() {
+            return new Iterator<T>() {
                 @Override
                 public boolean hasNext() {
                     return false;
                 }
 
                 @Override
-                public WeightedEdgeTo next() {
+                public T next() {
                     return null;
                 }
             };
         }
-    };
+    }
+
+    private static Iterable<WeightedEdgeTo> nullIterableEdges = new NullIterator<>();
+
+    private static Iterable<Integer> nullIterableInt = new NullIterator<>();
 
     public SimpleWeightedDigraph(int vertices) {
         this.vertices = vertices;
@@ -85,6 +90,17 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
     }
 
     @Override
+    public Iterable<Integer> adjacencies(int v) {
+        List<WeightedEdgeTo> adj = adjacencylist.get(v);
+        if (adj == null) {
+            return nullIterableInt;
+        }
+        else {
+            return adj.stream().map(edge -> edge.to()).collect(Collectors.toList());
+        }
+    }
+
+    @Override
     public void addEdge(int v1, int v2, double weight) {
         int maxV = Math.max(v1, v2);
         for (; vertices <= maxV; vertices++) {
@@ -101,7 +117,7 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
 
     @Override
     public Iterable<WeightedEdgeTo> adjacenciesWithWeights(int v) {
-        return adjacencylist.get(v) == null ? nullIterable : adjacencylist.get(v);
+        return adjacencylist.get(v) == null ? nullIterableEdges : adjacencylist.get(v);
     }
 
 
@@ -113,7 +129,8 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
         graph.addEdge(2, 0, 10);
         graph.addEdge(2, 1, 5);
         graph.addEdge(1, 3, 3);
-
+        //graph.addEdge(5, 6, 3);
+        //System.out.println(graph.adjacencies(4));
         System.out.println(WeightedDigraphAlgorithms.getAllPathsWithLength(graph, 2, 3));
     }
 }
