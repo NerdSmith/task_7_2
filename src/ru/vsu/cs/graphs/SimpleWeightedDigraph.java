@@ -1,4 +1,6 @@
-package ru.vsu.cs;
+package ru.vsu.cs.graphs;
+
+import ru.vsu.cs.NullIterator;
 
 import java.util.*;
 import java.util.ArrayList;
@@ -31,23 +33,6 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
     private int vertices;
     private int edges;
     private List<List<WeightedEdgeTo>> adjacencylist;
-
-    protected static class NullIterator<T> implements Iterable<T> {
-        @Override
-        public Iterator<T> iterator() {
-            return new Iterator<T>() {
-                @Override
-                public boolean hasNext() {
-                    return false;
-                }
-
-                @Override
-                public T next() {
-                    return null;
-                }
-            };
-        }
-    }
 
     private static Iterable<WeightedEdgeTo> nullIterableEdges = new NullIterator<>();
 
@@ -118,19 +103,5 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
     @Override
     public Iterable<WeightedEdgeTo> adjacenciesWithWeights(int v) {
         return adjacencylist.get(v) == null ? nullIterableEdges : adjacencylist.get(v);
-    }
-
-
-    public static void main(String[] args) {
-        SimpleWeightedDigraph graph = new SimpleWeightedDigraph(4);
-        graph.addEdge(0, 1, 10);
-        graph.addEdge(0, 2, 20);
-        graph.addEdge(0, 3, 20);
-        graph.addEdge(2, 0, 10);
-        graph.addEdge(2, 1, 5);
-        graph.addEdge(1, 3, 3);
-        //graph.addEdge(5, 6, 3);
-        //System.out.println(graph.adjacencies(4));
-        System.out.println(WeightedDigraphAlgorithms.getAllPathsWithLength(graph, 2, 3));
     }
 }

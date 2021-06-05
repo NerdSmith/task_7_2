@@ -9,6 +9,10 @@ import org.apache.batik.bridge.*;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.svg.SVGDocument;
+import ru.vsu.cs.graphs.Graph;
+import ru.vsu.cs.graphs.WeightedGraph;
+import ru.vsu.cs.graphs.util.GraphUtils;
+import ru.vsu.cs.graphs.util.WeightedGraphAlgorithms;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +25,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FrameMain extends JFrame {
     private JPanel panelMain;
@@ -135,7 +137,7 @@ public class FrameMain extends JFrame {
                 }
                 if (graph instanceof WeightedGraph) {
                     ArrayList<Pair<Integer, List<Integer>>> paths =
-                            WeightedDigraphAlgorithms.getAllPathsWithLength((WeightedGraph) graph, from, to);
+                            WeightedGraphAlgorithms.getAllPathsWithLength((WeightedGraph) graph, from, to);
                     paths.sort(new Comparator<Pair<Integer, List<Integer>>>() {
                         @Override
                         public int compare(Pair<Integer, List<Integer>> o1, Pair<Integer, List<Integer>> o2) {

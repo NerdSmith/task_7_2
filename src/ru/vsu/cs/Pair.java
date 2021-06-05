@@ -1,7 +1,5 @@
 package ru.vsu.cs;
 
-import java.io.Serializable;
-
 public class Pair<K,V> {
     private K v1;
 

@@ -1,4 +1,4 @@
-package ru.vsu.cs;
+package ru.vsu.cs.graphs;
 
 public interface Graph {
     int vertexCount();

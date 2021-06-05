@@ -1,4 +1,7 @@
-package ru.vsu.cs;
+package ru.vsu.cs.graphs.util;
+
+import ru.vsu.cs.NullIterator;
+import ru.vsu.cs.graphs.*;
 
 import java.util.Scanner;
 
@@ -22,7 +25,7 @@ public class GraphUtils {
             //int count = 0;
             if (graph instanceof WeightedGraph) {
                 Iterable<WeightedGraph.WeightedEdgeTo> edges = ((WeightedGraph) graph).adjacenciesWithWeights(v1);
-                if (!(edges instanceof SimpleWeightedDigraph.NullIterator)) {
+                if (!(edges instanceof NullIterator)) {
                     for (WeightedGraph.WeightedEdgeTo v2: edges) {
                         sb.append(String.format("  %d %s %d[label=\"%4$s\",weight=\"%4$s\"]", v1, (isDigraph ? "->" : "--"), v2.to(), v2.weight())).append(nl);
                         //count++;

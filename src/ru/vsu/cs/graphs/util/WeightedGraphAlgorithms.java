@@ -1,9 +1,12 @@
-package ru.vsu.cs;
+package ru.vsu.cs.graphs.util;
+
+import ru.vsu.cs.Pair;
+import ru.vsu.cs.graphs.WeightedGraph;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeightedDigraphAlgorithms {
+public class WeightedGraphAlgorithms {
     public static ArrayList<Pair<Integer, List<Integer>>> getAllPathsWithLength(WeightedGraph graph, int s, int d) {
         ArrayList<Pair<Integer, List<Integer>>> pathsWithLength = new ArrayList<>();
         boolean[] isVisited = new boolean[graph.vertexCount()];
