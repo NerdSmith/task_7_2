@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class SimpleWeightedDigraph implements WeightedDigraph {
     protected static class Edge implements WeightedEdgeTo {
-        int destination;
-        double weight;
+        private int destination;
+        private double weight;
 
         public Edge(int destination, double weight) {
             this.destination = destination;
