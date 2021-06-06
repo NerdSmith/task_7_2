@@ -105,6 +105,7 @@ public class FrameMain extends JFrame {
         });
 
         loadFromFileButton.addActionListener(e -> {
+            inputTextArea.setText("");
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File("./files"));
             int result = chooser.showOpenDialog(null);
