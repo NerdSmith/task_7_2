@@ -38,7 +38,7 @@ public class SimpleWeightedDigraph implements WeightedDigraph {
     public SimpleWeightedDigraph(int vertices) {
         this.vertices = vertices;
         adjacencylist = new ArrayList<>(vertices);
-        for (int i = 0; i <vertices ; i++) {
+        for (int i = 0; i < vertices ; i++) {
             adjacencylist.add(new ArrayList<>());
         }
     }
