@@ -24,6 +24,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 public class FrameMain extends JFrame {
     private JPanel panelMain;
@@ -109,11 +110,15 @@ public class FrameMain extends JFrame {
             int result = chooser.showOpenDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {
                 String name = chooser.getSelectedFile().getPath();
+                Scanner scanner;
                 try {
-                    inputTextArea.setText(new FileReader(name).readAll());
+                    scanner = new Scanner(new File(name));
+                } catch (FileNotFoundException fileNotFoundException) {
+                    return;
                 }
-                catch (FileNotFoundException err) {
-                    err.printStackTrace();
+                while (scanner.hasNext()) {
+                    inputTextArea.append(scanner.nextLine());
+                    inputTextArea.append(System.lineSeparator());
                 }
             }
         });
